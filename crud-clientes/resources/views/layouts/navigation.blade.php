@@ -12,19 +12,19 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" style="text-decoration: none;">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('paises.index')" :active="request()->routeIs('paises.*')">
+                    <x-nav-link :href="route('paises.index')" :active="request()->routeIs('paises.*')" style="text-decoration: none;">
                         {{ __('Paises') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('estados.index')" :active="request()->routeIs('estados.*')">
+                    <x-nav-link :href="route('estados.index')" :active="request()->routeIs('estados.*')" style="text-decoration: none;">
                         {{ __('Estados') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('cidades.index')" :active="request()->routeIs('cidades.*')">
+                    <x-nav-link :href="route('cidades.index')" :active="request()->routeIs('cidades.*')" style="text-decoration: none;">
                         {{ __('Cidades') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('clientes.index')" :active="request()->routeIs('clientes.*')">
+                    <x-nav-link :href="route('clientes.index')" :active="request()->routeIs('clientes.*')" style="text-decoration: none;">
                         {{ __('Clientes') }}
                     </x-nav-link>
                 </div>
