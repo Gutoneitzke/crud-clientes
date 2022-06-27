@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Paise;
 use Illuminate\Http\Request;
 
 class PaisesController extends Controller
@@ -13,7 +14,8 @@ class PaisesController extends Controller
      */
     public function index()
     {
-        //
+        $paises = Paise::all();
+        return view('paises.index', ['paises' => $paises]);
     }
 
     /**
@@ -23,7 +25,7 @@ class PaisesController extends Controller
      */
     public function create()
     {
-        //
+        return view('paises.create');
     }
 
     /**
@@ -34,7 +36,8 @@ class PaisesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Paise::create($request->all());
+        return redirect(route('paises.index'));
     }
 
     /**
@@ -56,7 +59,15 @@ class PaisesController extends Controller
      */
     public function edit($id)
     {
-        //
+        //buscar o país para editar
+        $pais = Paise::where('id', '=', $id)->first();
+        
+        if(!empty($pais))
+        {
+            //renderizar a view mandando esse pais
+            return view('paises.edit', ['pais' => $pais]);
+        }
+        return redirect(route('paises.index'));
     }
 
     /**
@@ -68,7 +79,11 @@ class PaisesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = [
+            'nome' => $request->nome
+        ];
+        Paise::where('id', '=', $id)->update($data);
+        return redirect(route('paises.index'));
     }
 
     /**
@@ -79,6 +94,7 @@ class PaisesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Paise::where('id', '=', $id)->delete();
+        return redirect(route('paises.index'));
     }
 }

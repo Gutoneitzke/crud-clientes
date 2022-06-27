@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Estado;
+use App\Models\Paise;
 use Illuminate\Http\Request;
 
 class EstadosController extends Controller
@@ -13,7 +15,8 @@ class EstadosController extends Controller
      */
     public function index()
     {
-        //
+        $estados = Estado::all();
+        return view('estados.index', ['estados' => $estados]);
     }
 
     /**
@@ -23,7 +26,8 @@ class EstadosController extends Controller
      */
     public function create()
     {
-        //
+        $paises = Paise::all();
+        return view('estados.create', ['paises' => $paises]);
     }
 
     /**
@@ -34,7 +38,8 @@ class EstadosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Estado::create($request->all());
+        return redirect(route('estados.index'));
     }
 
     /**
@@ -56,7 +61,16 @@ class EstadosController extends Controller
      */
     public function edit($id)
     {
-        //
+        //buscar o estado para editar
+        $estado = Estado::where('id', '=', $id)->first();
+        $paises = Paise::all();
+        
+        if(!empty($estado))
+        {
+            //renderizar a view mandando esse estado
+            return view('estados.edit', ['estado' => $estado, 'paises' => $paises]);
+        }
+        return redirect(route('estados.index'));
     }
 
     /**
@@ -68,7 +82,12 @@ class EstadosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = [
+            'nome' => $request->nome,
+            'pais_id' => $request->pais_id,
+        ];
+        Estado::where('id', '=', $id)->update($data);
+        return redirect(route('estados.index'));
     }
 
     /**
@@ -79,6 +98,7 @@ class EstadosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Estado::where('id', '=', $id)->delete();
+        return redirect(route('estados.index'));
     }
 }

@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('cidades', function (Blueprint $table) {
             $table->id();
             $table->string('nome', 110);
-            $table->string('UF', 10);
             $table->unsignedBigInteger('estado_id');
             $table->foreign('estado_id')->references('id')->on('estados');
             $table->timestamps();

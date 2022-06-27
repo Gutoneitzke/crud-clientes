@@ -15,6 +15,18 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('paises.index')" :active="request()->routeIs('paises.*')">
+                        {{ __('Paises') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('estados.index')" :active="request()->routeIs('estados.*')">
+                        {{ __('Estados') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('cidades.index')" :active="request()->routeIs('cidades.*')">
+                        {{ __('Cidades') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('clientes.index')" :active="request()->routeIs('clientes.*')">
+                        {{ __('Clientes') }}
+                    </x-nav-link>
                 </div>
             </div>
 

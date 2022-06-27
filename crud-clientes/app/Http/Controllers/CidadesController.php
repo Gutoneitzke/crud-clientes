@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cidade;
+use App\Models\Estado;
 use Illuminate\Http\Request;
 
 class CidadesController extends Controller
@@ -13,7 +15,8 @@ class CidadesController extends Controller
      */
     public function index()
     {
-        //
+        $cidades = Cidade::all();
+        return view('cidades.index', ['cidades' => $cidades]);
     }
 
     /**
@@ -23,7 +26,8 @@ class CidadesController extends Controller
      */
     public function create()
     {
-        //
+        $estados = Estado::all();
+        return view('cidades.create', ['estados' => $estados]);
     }
 
     /**
@@ -34,7 +38,8 @@ class CidadesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Cidade::create($request->all());
+        return redirect(route('cidades.index'));
     }
 
     /**
@@ -56,7 +61,16 @@ class CidadesController extends Controller
      */
     public function edit($id)
     {
-        //
+        //buscar a cidade para editar
+        $cidade = Cidade::where('id', '=', $id)->first();
+        $estados = Estado::all();
+        
+        if(!empty($cidade))
+        {
+            //renderizar a view mandando essa cidade
+            return view('cidades.edit', ['estados' => $estados, 'cidade' => $cidade]);
+        }
+        return redirect(route('cidades.index'));
     }
 
     /**
@@ -68,7 +82,12 @@ class CidadesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = [
+            'nome' => $request->nome,
+            'estado_id' => $request->estado_id,
+        ];
+        Cidade::where('id', '=', $id)->update($data);
+        return redirect(route('cidades.index'));
     }
 
     /**
@@ -79,6 +98,7 @@ class CidadesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Cidade::where('id', '=', $id)->delete();
+        return redirect(route('cidades.index'));
     }
 }
