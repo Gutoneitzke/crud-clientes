@@ -824,6 +824,9 @@ select {
 .max-w-7xl {
   max-width: 80rem;
 }
+.max-w-2xl {
+  max-width: 42rem;
+}
 .flex-1 {
   flex: 1 1 0%;
 }
