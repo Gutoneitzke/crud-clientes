@@ -14,7 +14,7 @@ class PaisesController extends Controller
      */
     public function index()
     {
-        $paises = Paise::all();
+        $paises = Paise::paginate(7);
         return view('paises.index', ['paises' => $paises]);
     }
 
