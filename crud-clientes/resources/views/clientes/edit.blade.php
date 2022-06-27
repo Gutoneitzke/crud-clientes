@@ -32,15 +32,15 @@
                     <div class="form-group">
                         <label for="sexo">Selecione uma sexo:</label>
                         <select class="form-control" id="sexo" name="sexo">
-                            <option value="M" {{ $cliente->sexo == 'M' ? 'selected' : '' }}>Masculino</option>
-                            <option value="F" {{ $cliente->sexo == 'F' ? 'selected' : '' }}>Feminino</option>
-                            <option value="O" {{ $cliente->sexo == 'O' ? 'selected' : '' }}>Outro</option>
+                            <option value="M" {{ $cliente->sexo == 'm' ? 'selected' : '' }}>Masculino</option>
+                            <option value="F" {{ $cliente->sexo == 'f' ? 'selected' : '' }}>Feminino</option>
+                            <option value="O" {{ $cliente->sexo == 'o' ? 'selected' : '' }}>Outro</option>
                         </select>
                     </div>
                     <br>
                     <div class="form-group">
-                        <label for="estado">Selecione uma cidade:</label>
-                        <select class="form-control" id="estado" name="estado_id">
+                        <label for="cidade">Selecione uma cidade:</label>
+                        <select class="form-control" id="cidade" name="cidade_id">
                             @foreach($cidades as $cidade)
                                 <option value="{{ $cidade->id }}" {{ $cliente->cidade_id == $cidade->id ? 'selected' : '' }}>{{ $cidade->nome }}</option>
                             @endforeach

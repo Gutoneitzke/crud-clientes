@@ -38,8 +38,8 @@
                     </div>
                     <br>
                     <div class="form-group">
-                        <label for="estado">Selecione uma cidade:</label>
-                        <select class="form-control" id="estado" name="estado_id">
+                        <label for="cidade">Selecione uma cidade:</label>
+                        <select class="form-control" id="cidade" name="cidade_id">
                             @foreach($cidades as $cidade)
                                 <option value="{{ $cidade->id }}">{{ $cidade->nome }}</option>
                             @endforeach

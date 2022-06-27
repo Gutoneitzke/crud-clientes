@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cidade;
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 
 class ClientesController extends Controller
@@ -13,7 +15,8 @@ class ClientesController extends Controller
      */
     public function index()
     {
-        //
+        $clientes = Cliente::all();
+        return view('clientes.index', ['clientes' => $clientes]);
     }
 
     /**
@@ -23,7 +26,8 @@ class ClientesController extends Controller
      */
     public function create()
     {
-        //
+        $cidades = Cidade::all();
+        return view('clientes.create', ['cidades' => $cidades]);
     }
 
     /**
@@ -34,7 +38,8 @@ class ClientesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Cliente::create($request->all());
+        return redirect(route('clientes.index'));
     }
 
     /**
@@ -56,7 +61,16 @@ class ClientesController extends Controller
      */
     public function edit($id)
     {
-        //
+        //buscar o cliente para editar
+        $cliente = Cliente::where('id', '=', $id)->first();
+        $cidades = Cidade::all();
+        
+        if(!empty($cliente))
+        {
+            //renderizar a view mandando esse cliente
+            return view('clientes.edit', ['cliente' => $cliente, 'cidades' => $cidades]);
+        }
+        return redirect(route('clientes.index'));
     }
 
     /**
@@ -68,7 +82,15 @@ class ClientesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = [
+            'nome' => $request->nome,
+            'email' => $request->email,
+            'telefone' => $request->telefone,
+            'sexo' => $request->sexo,
+            'cidade_id' => $request->cidade_id,
+        ];
+        Cliente::where('id', '=', $id)->update($data);
+        return redirect(route('clientes.index'));
     }
 
     /**
@@ -79,6 +101,7 @@ class ClientesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Cliente::where('id', '=', $id)->delete();
+        return redirect(route('clientes.index'));
     }
 }

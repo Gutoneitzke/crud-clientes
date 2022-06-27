@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('clientes', function (Blueprint $table) {
             $table->id();
             $table->string('nome', 110);
-            $table->string('email', 10);
+            $table->string('email', 110);
             $table->string('telefone', 11);
             $table->enum('sexo', ['m', 'f', 'o']);
             $table->unsignedBigInteger('cidade_id');
