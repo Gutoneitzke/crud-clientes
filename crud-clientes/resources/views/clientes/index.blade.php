@@ -32,7 +32,7 @@
                             <td>{{ $cliente->email}}</td>
                             <td>{{ $cliente->telefone}}</td>
                             <td>{{ $cliente->sexo}}</td>
-                            <td>{{ $cliente->cidade_id}}</td>
+                            <td>{{ $cliente->cidade->nome}}</td>
                             <td>
                                 <a href="{{ route('clientes.edit', ['id'=>$cliente->id] ) }}" class="btn btn-sm btn-primary">Edit</a>
                                 <form method="POST" action="{{ route('clientes.destroy', ['id' => $cliente->id]) }}" style="display:contents;" class="delete-form">

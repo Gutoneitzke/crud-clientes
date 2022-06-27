@@ -26,7 +26,7 @@
                         <tr>
                             <td>{{ $cidade->id }}</td>
                             <td>{{ $cidade->nome }}</td>
-                            <td>{{ $cidade->estado_id}}</td>
+                            <td>{{ $cidade->estado->nome}}</td>
                             <td>
                                 <a href="{{ route('cidades.edit', ['id'=>$cidade->id] ) }}" class="btn btn-sm btn-primary">Edit</a>
                                 <form method="POST" action="{{ route('cidades.destroy', ['id' => $cidade->id]) }}" style="display:contents;" class="delete-form">
