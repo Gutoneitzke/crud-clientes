@@ -12,10 +12,18 @@ class PaisesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $paises = Paise::paginate(7);
-        return view('paises.index', ['paises' => $paises]);
+        $q = $request->query('q', null);
+        if($q)
+        {
+            $paises = Paise::where('nome', 'LIKE', "%$q%")->paginate(7)->withQueryString();
+        }
+        else
+        {
+            $paises = Paise::paginate(7);
+        }
+        return view('paises.index', ['paises' => $paises, 'q' => $q]);
     }
 
     /**

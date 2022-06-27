@@ -13,10 +13,18 @@ class EstadosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $estados = Estado::paginate(7);
-        return view('estados.index', ['estados' => $estados]);
+        $q = $request->query('q', null);
+        if($q)
+        {
+            $estados = Estado::where('nome', 'LIKE', "%$q%")->paginate(7)->withQueryString();
+        }
+        else
+        {
+            $estados = Estado::paginate(7);
+        }
+        return view('estados.index', ['estados' => $estados, 'q' => $q]);
     }
 
     /**

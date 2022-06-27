@@ -13,10 +13,18 @@ class ClientesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $clientes = Cliente::paginate(7);
-        return view('clientes.index', ['clientes' => $clientes]);
+        $q = $request->query('q', null);
+        if($q)
+        {
+            $clientes = Cliente::where('nome', 'LIKE', "%$q%")->paginate(7)->withQueryString();
+        }
+        else
+        {
+            $clientes = Cliente::paginate(7);
+        }
+        return view('clientes.index', ['clientes' => $clientes, 'q' => $q]);
     }
 
     /**

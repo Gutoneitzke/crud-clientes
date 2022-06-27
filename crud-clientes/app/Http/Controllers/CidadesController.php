@@ -13,10 +13,18 @@ class CidadesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $cidades = Cidade::paginate(7);
-        return view('cidades.index', ['cidades' => $cidades]);
+        $q = $request->query('q', null);
+        if($q)
+        {
+            $cidades = Cidade::where('nome', 'LIKE', "%$q%")->paginate(7)->withQueryString();
+        }
+        else
+        {
+            $cidades = Cidade::paginate(7);
+        }
+        return view('cidades.index', ['cidades' => $cidades, 'q' => $q]);
     }
 
     /**

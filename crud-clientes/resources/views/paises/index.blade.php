@@ -1,13 +1,22 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="row">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight col-sm-11">
+        <div class="box-flex">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Países') }}
             </h2>
-            <a href="{{ route('paises.create') }}" class="btn btn-sm btn-success col-sm-1">Adicionar</a>
+            <form class="col-sm-4">
+                <div class="input-group mb-3 mt-2">
+                    <input type="text" class="form-control" placeholder="Pesquisar..." value="{{ $q }}" name="q">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">
+                            Pesquisar
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <a href="{{ route('paises.create') }}" class="btn btn-sm btn-success">Adicionar</a>
         </div>
     </x-slot>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
