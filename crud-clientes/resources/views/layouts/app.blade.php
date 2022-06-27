@@ -42,16 +42,5 @@
                 {{ $slot }}
             </main>
         </div>
-        <script>
-            $(document).ready(function(){
-                $('.delete-form').submit(function (e) {
-                    e.preventDefault();
-                    if(confirm("Tem certeza que deseja remover ?")){
-                        this.submit();
-                    }
-                    return;
-                });
-            });
-        </script>
     </body>
 </html>

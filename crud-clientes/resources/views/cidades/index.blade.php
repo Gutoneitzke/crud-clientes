@@ -6,7 +6,7 @@
             </h2>
             <form class="col-sm-4">
                 <div class="input-group mb-3 mt-2">
-                    <input type="text" class="form-control" placeholder="Pesquisar..." value="{{ $q }}" name="q">
+                    <input type="search" class="form-control" placeholder="Pesquisar..." value="{{ $q }}" name="q">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="submit">
                             Pesquisar
