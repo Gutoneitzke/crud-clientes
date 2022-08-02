@@ -26,7 +26,6 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
 
-
     Route::prefix('paises')->name('paises.')->group(function (){
         Route::get('/', [PaisesController::class,'index'])->name('index');
         Route::get('/create', [PaisesController::class,'create'])->name('create');
